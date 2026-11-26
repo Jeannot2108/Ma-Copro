@@ -21,6 +21,6 @@ jobs:
           curl --fail --silent --show-error \
             --retry 2 \
             --max-time 30 \
-            "$SUPABASE_URL/rest/v1/" \
+            "$SUPABASE_URL/rest/v1/official_documents?select=id&limit=1" \
             -H "apikey: $SUPABASE_KEY" 
             
