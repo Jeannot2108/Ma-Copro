@@ -1,0 +1,26 @@
+
+name: Verification quotidienne Supabase
+
+on:
+  schedule:
+    - cron: '17 7 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verifier Ma Copro
+        env:
+          SUPABASE_URL: https://xxpaxhvchrflvzhtsspp.supabase.co
+          SUPABASE_KEY: ${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
+        run: |
+          curl --fail --silent --show-error \
+            --retry 2 \
+            --max-time 30 \
+            "$SUPABASE_URL/rest/v1/" \
+            -H "apikey: $SUPABASE_KEY" \
+            -H "Authorization: Bearer $SUPABASE_KEY"
